@@ -7,6 +7,9 @@ import com.student.studentmanagementsystem.service.StudentService;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/students")
@@ -37,4 +40,10 @@ public class StudentController {
     public void deleteStudent(@PathVariable Long studentId) {
         studentService.deleteStudent(studentId);
     }
+
+    @GetMapping("/test")
+    public String getMethodName(@RequestParam String param) {
+        return "hello";
+    }
+    
 }

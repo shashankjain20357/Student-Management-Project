@@ -1,6 +1,8 @@
 package com.student.studentmanagementsystem.entities;
 
 import jakarta.persistence.*;
+
+@Entity
 public class Enrolment {
     
     @Id
