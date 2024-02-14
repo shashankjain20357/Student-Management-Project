@@ -11,7 +11,7 @@ public class Student {
 
     private String name;
     private String email;
-    private int contactNo;
+    private String contactNo;
     private String address;
 
     @ManyToOne
@@ -45,11 +45,11 @@ public class Student {
         this.email = email;
     }
 
-    public int getContactNo() {
+    public String getContactNo() {
         return contactNo;
     }
 
-    public void setContactNo(int contactNo) {
+    public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
 

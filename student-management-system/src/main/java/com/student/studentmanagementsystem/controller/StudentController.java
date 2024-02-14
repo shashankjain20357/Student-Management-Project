@@ -43,7 +43,8 @@ public class StudentController {
     }
 
     @GetMapping("/test")
-    public String getMethodName(@RequestParam String param) {
+    public String getMethodName() {
+        
         return "hello";
     }
 

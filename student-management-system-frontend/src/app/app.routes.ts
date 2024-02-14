@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { StudentListComponent } from './student-list/student-list.component';
+import { EnrolmentComponent } from "../course-list/course-list.componentls.component";
+import { CourseListComponent } from './components/course-list/course-list.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
-import { CourseListComponent } from './course-list/course-list.component';
-import { EnrolmentComponent } from './enrolment/enrolment.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 export const routes: Routes = [
   { path: 'students', component: StudentListComponent },

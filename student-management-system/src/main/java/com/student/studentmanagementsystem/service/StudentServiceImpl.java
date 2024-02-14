@@ -41,12 +41,27 @@ public class StudentServiceImpl implements StudentService {
 
         if (optionalExistingStudent.isPresent()) {
             Student existingStudent = optionalExistingStudent.get();
-            // Update fields of existingStudent with values from updatedStudent
-            existingStudent.setName(updatedStudent.getName());
-            existingStudent.setEmail(updatedStudent.getEmail());
-            existingStudent.setContactNo(updatedStudent.getContactNo());
-            existingStudent.setAddress(updatedStudent.getAddress());
-            existingStudent.setCourseEnrolled(updatedStudent.getCourseEnrolled());
+            // Update only non-null fields
+            if (updatedStudent.getName() != null) {
+                existingStudent.setName(updatedStudent.getName());
+            }
+
+            if (updatedStudent.getEmail() != null) {
+                existingStudent.setEmail(updatedStudent.getEmail());
+            }
+
+            if (updatedStudent.getContactNo() != null) {
+                existingStudent.setContactNo(updatedStudent.getContactNo());
+            }
+
+            if (updatedStudent.getAddress() != null) {
+                existingStudent.setAddress(updatedStudent.getAddress());
+            }
+
+            if (updatedStudent.getCourseEnrolled() != null) {
+                existingStudent.setCourseEnrolled(updatedStudent.getCourseEnrolled());
+            }
+
             // Save the updated student
             return studentRepository.save(existingStudent);
         } else {
