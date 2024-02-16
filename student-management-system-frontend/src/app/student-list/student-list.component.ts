@@ -1,7 +1,8 @@
-// src/app/student-list/student-list.component.ts
+// student-list.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
+import { StudentService } from '../services/student.service';
+import { Student } from '../model/student.model';
 
 @Component({
   selector: 'app-student-list',
@@ -9,18 +10,22 @@ import { ApiService } from '../api.service';
   styleUrls: ['./student-list.component.css'],
 })
 export class StudentListComponent implements OnInit {
-  students: any[] = [];
+  students: Student[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private studentService: StudentService) {}
 
   ngOnInit(): void {
-    this.apiService.getStudents().subscribe(
-      (data: any[]) => {
-        this.students = data;
+    this.loadStudents();
+  }
+
+  loadStudents(): void {
+    this.studentService.getAllStudents().subscribe(
+      (students) => {
+        this.students = students;
       },
       (error) => {
-        console.error('Error fetching students:', error);
-        // Optionally, you can show a user-friendly message or perform other error handling here.
+        console.error('Error loading students:', error);
+        // Handle error scenarios if needed
       }
     );
   }

@@ -1,1 +1,17 @@
-<p>student-details works!</p>
+<!-- student-details.component.html -->
+
+<h2>Student Details</h2>
+
+<div *ngIf="student">
+  <p>ID: {{ student.id }}</p>
+  <p>Name: {{ student.name }}</p>
+  <p>Email: {{ student.email }}</p>
+  <p>Contact No: {{ student.contactNo }}</p>
+  <p>Address: {{ student.address }}</p>
+  <p>Course Enrolled: {{ student.courseEnrolled?.courseName || 'Not Enrolled' }}</p>
+  
+  <!-- Add more details and edit functionality as needed -->
+  
+  <button (click)="editStudent()">Edit</button>
+  <button (click)="saveStudentChanges()">Save Changes</button>
+</div>
