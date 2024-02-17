@@ -1,4 +1,4 @@
-// src/app/app-routing.module.ts
+// app-routing.module.ts
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'students/:id', component: StudentDetailsComponent },
   { path: 'courses', component: CourseListComponent },
   { path: 'enrolments', component: EnrolmentListComponent },
-  { path: '', redirectTo: '/students', pathMatch: 'full' },
-  { path: '**', redirectTo: '/students' }, // Handle unknown routes by redirecting to /students
+  // Add other routes as needed
+  { path: '', redirectTo: '/students', pathMatch: 'full' }, // Default route
 ];
 
 @NgModule({

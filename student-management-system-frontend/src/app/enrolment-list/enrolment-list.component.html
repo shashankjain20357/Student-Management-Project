@@ -1,13 +1,13 @@
 <!-- enrolment-list.component.html -->
 
-<h2>Enrolment List</h2>
+<div *ngFor="let enrolment of enrolments">
+  <div>
+    <h3>Enrolment ID: {{ enrolment.enrolmentId }}</h3>
+    <p>Student: {{ enrolment.student?.name }}</p>
+    <p>Course: {{ enrolment.course?.courseName }}</p>
+    <!-- Add any other relevant information -->
 
-<ul>
-  <li *ngFor="let enrolment of enrolments">
-    Enrolment ID: {{ enrolment.enrolmentId }}
-    <br>
-    Student: {{ enrolment.student }}
-    <br>
-    Course: {{ enrolment.course }}
-  </li>
-</ul>
+    <!-- Link to Enrolment Details -->
+    <a [routerLink]="['/enrolments', enrolment.enrolmentId]">View Details</a>
+  </div>
+</div>

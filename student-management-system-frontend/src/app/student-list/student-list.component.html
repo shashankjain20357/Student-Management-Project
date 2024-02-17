@@ -1,16 +1,15 @@
 <!-- student-list.component.html -->
 
-<h2>Student List</h2>
-
-<ul>
-  <li *ngFor="let student of students">
-    <p>ID: {{ student.id }}</p>
-    <p>Name: {{ student.name }}</p>
+<div *ngFor="let student of students">
+  <div>
+    <h3>{{ student.name }}</h3>
     <p>Email: {{ student.email }}</p>
     <p>Contact No: {{ student.contactNo }}</p>
     <p>Address: {{ student.address }}</p>
-    <p>Course Enrolled: {{ student.courseEnrolled?.courseName || 'Not Enrolled' }}</p>
-    <!-- Add more details as needed -->
-    <hr />
-  </li>
-</ul>
+    <p>Enrolled Course: {{ student.courseEnrolled?.courseName }}</p>
+    <!-- Add any other relevant information -->
+
+    <!-- Link to Student Details -->
+    <a [routerLink]="['/students', student.id]">View Details</a>
+  </div>
+</div>

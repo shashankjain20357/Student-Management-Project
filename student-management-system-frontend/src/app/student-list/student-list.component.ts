@@ -1,8 +1,8 @@
 // student-list.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { StudentService } from '../services/student.service';
 import { Student } from '../model/student.model';
+import { StudentService } from '../services/student.service';
 
 @Component({
   selector: 'app-student-list',
@@ -18,15 +18,9 @@ export class StudentListComponent implements OnInit {
     this.loadStudents();
   }
 
-  loadStudents(): void {
-    this.studentService.getAllStudents().subscribe(
-      (students) => {
-        this.students = students;
-      },
-      (error) => {
-        console.error('Error loading students:', error);
-        // Handle error scenarios if needed
-      }
-    );
+  private loadStudents(): void {
+    this.studentService.getAllStudents().subscribe((data) => {
+      this.students = data;
+    });
   }
 }

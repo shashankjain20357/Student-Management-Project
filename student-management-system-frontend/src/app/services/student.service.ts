@@ -9,7 +9,7 @@ import { Student } from '../model/student.model';
   providedIn: 'root',
 })
 export class StudentService {
-  private apiUrl = 'http://localhost:8080/api/students'; // Update with your backend URL
+  private apiUrl = 'http://localhost:8080/api/students';
 
   constructor(private http: HttpClient) {}
 
@@ -17,19 +17,19 @@ export class StudentService {
     return this.http.get<Student[]>(this.apiUrl);
   }
 
-  getStudentById(studentId: number): Observable<Student> {
-    return this.http.get<Student>(`${this.apiUrl}/${studentId}`);
+  getStudentById(id: number): Observable<Student> {
+    return this.http.get<Student>(`${this.apiUrl}/${id}`);
   }
 
   saveStudent(student: Student): Observable<Student> {
     return this.http.post<Student>(this.apiUrl, student);
   }
 
-  updateStudent(studentId: number, updatedStudent: Student): Observable<Student> {
-    return this.http.put<Student>(`${this.apiUrl}/${studentId}`, updatedStudent);
+  updateStudent(id: number, student: Student): Observable<Student> {
+    return this.http.put<Student>(`${this.apiUrl}/${id}`, student);
   }
 
-  deleteStudent(studentId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${studentId}`);
+  deleteStudent(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

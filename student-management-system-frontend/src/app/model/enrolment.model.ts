@@ -1,8 +1,10 @@
 // enrolment.model.ts
 
+import { Student } from './student.model';
+import { Course } from './course.model';
+
 export interface Enrolment {
-    enrolmentId: number;
-    student: any; // Adjust as per your backend model
-    course: any; // Adjust as per your backend model
-  }
-  
+  enrolmentId?: number;
+  student?: Student;
+  course?: Course;
+}

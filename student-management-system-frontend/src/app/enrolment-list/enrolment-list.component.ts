@@ -1,8 +1,8 @@
 // enrolment-list.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { EnrolmentService } from '../services/enrolment.service';
 import { Enrolment } from '../model/enrolment.model';
+import { EnrolmentService } from '../services/enrolment.service';
 
 @Component({
   selector: 'app-enrolment-list',
@@ -10,7 +10,7 @@ import { Enrolment } from '../model/enrolment.model';
   styleUrls: ['./enrolment-list.component.css'],
 })
 export class EnrolmentListComponent implements OnInit {
-  enrolments: Enrolment[] = []; // Initialize the property
+  enrolments: Enrolment[] = [];
 
   constructor(private enrolmentService: EnrolmentService) {}
 
@@ -18,9 +18,9 @@ export class EnrolmentListComponent implements OnInit {
     this.loadEnrolments();
   }
 
-  loadEnrolments(): void {
-    this.enrolmentService.getAllEnrolments().subscribe((enrolments) => {
-      this.enrolments = enrolments;
+  private loadEnrolments(): void {
+    this.enrolmentService.getAllEnrolments().subscribe((data) => {
+      this.enrolments = data;
     });
   }
 }

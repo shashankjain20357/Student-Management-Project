@@ -1,8 +1,8 @@
 // course-list.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../services/course.service';
 import { Course } from '../model/course.model';
+import { CourseService } from '../services/course.service';
 
 @Component({
   selector: 'app-course-list',
@@ -10,7 +10,7 @@ import { Course } from '../model/course.model';
   styleUrls: ['./course-list.component.css'],
 })
 export class CourseListComponent implements OnInit {
-  courses: Course[] = []; // Initialize the property
+  courses: Course[] = [];
 
   constructor(private courseService: CourseService) {}
 
@@ -18,9 +18,9 @@ export class CourseListComponent implements OnInit {
     this.loadCourses();
   }
 
-  loadCourses(): void {
-    this.courseService.getAllCourses().subscribe((courses) => {
-      this.courses = courses;
+  private loadCourses(): void {
+    this.courseService.getAllCourses().subscribe((data) => {
+      this.courses = data;
     });
   }
 }

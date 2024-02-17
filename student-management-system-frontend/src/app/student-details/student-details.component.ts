@@ -2,8 +2,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentService } from '../services/student.service';
 import { Student } from '../model/student.model';
+import { StudentService } from '../services/student.service';
 
 @Component({
   selector: 'app-student-details',
@@ -11,49 +11,48 @@ import { Student } from '../model/student.model';
   styleUrls: ['./student-details.component.css'],
 })
 export class StudentDetailsComponent implements OnInit {
-  student!: Student;
+  student: Student = {};
 
   constructor(
+    private studentService: StudentService,
     private route: ActivatedRoute,
-    private router: Router,
-    private studentService: StudentService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    const studentIdString = this.route.snapshot.paramMap.get('id');
-    const studentId = studentIdString ? +studentIdString : null;
-
-    if (studentId !== null) {
-      this.loadStudentDetails(studentId);
-    } else {
-      // Handle the case when 'id' is null (e.g., redirect to an error page or home page)
-      console.error('Student ID is null.');
+    const studentId = this.route.snapshot.params['id'];
+    if (studentId) {
+      this.loadStudent(studentId);
     }
-    
   }
 
-  loadStudentDetails(studentId: number): void {
-    this.studentService.getStudentById(studentId).subscribe((student) => {
-      this.student = student;
+  private loadStudent(id: number): void {
+    this.studentService.getStudentById(id).subscribe((data) => {
+      this.student = data;
     });
   }
 
-  editStudent(): void {
-    // Navigate to the edit page, passing the student id
-    this.router.navigate(['/students', this.student.id, 'edit']);
+  saveStudent(): void {
+    this.studentService.saveStudent(this.student).subscribe(() => {
+      this.router.navigate(['/students']);
+    });
   }
 
-  saveStudentChanges(): void {
-    // Call the updateStudent method from the service
-    this.studentService.updateStudent(this.student.id, this.student).subscribe(
-      () => {
-        console.log('Student details updated successfully.');
-        // You can navigate to a different page or perform any other action upon successful update
-      },
-      (error) => {
-        console.error('Error updating student details:', error);
-        // Handle error scenarios if needed
-      }
-    );
+  updateStudent(): void {
+    if (this.student.id) {
+      this.studentService
+        .updateStudent(this.student.id, this.student)
+        .subscribe(() => {
+          this.router.navigate(['/students']);
+        });
+    }
+  }
+
+  deleteStudent(): void {
+    if (this.student.id) {
+      this.studentService.deleteStudent(this.student.id).subscribe(() => {
+        this.router.navigate(['/students']);
+      });
+    }
   }
 }

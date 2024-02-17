@@ -1,17 +1,32 @@
 <!-- student-details.component.html -->
 
-<h2>Student Details</h2>
-
 <div *ngIf="student">
-  <p>ID: {{ student.id }}</p>
-  <p>Name: {{ student.name }}</p>
-  <p>Email: {{ student.email }}</p>
-  <p>Contact No: {{ student.contactNo }}</p>
-  <p>Address: {{ student.address }}</p>
-  <p>Course Enrolled: {{ student.courseEnrolled?.courseName || 'Not Enrolled' }}</p>
-  
-  <!-- Add more details and edit functionality as needed -->
-  
-  <button (click)="editStudent()">Edit</button>
-  <button (click)="saveStudentChanges()">Save Changes</button>
+  <h2>{{ student.name }} Details</h2>
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" [(ngModel)]="student.name" placeholder="Name" />
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input id="email" [(ngModel)]="student.email" placeholder="Email" />
+  </div>
+  <div>
+    <label for="contactNo">Contact Number:</label>
+    <input id="contactNo" [(ngModel)]="student.contactNo" placeholder="Contact Number" />
+  </div>
+  <div>
+    <label for="address">Address:</label>
+    <input id="address" [(ngModel)]="student.address" placeholder="Address" />
+  </div>
+  <div>
+    <label for="courseEnrolled">Course Enrolled:</label>
+    <input
+      id="courseEnrolled"
+      [ngModel]="student.courseEnrolled?.courseName"
+      (ngModelChange)="student.courseEnrolled!.courseName = $event"
+      placeholder="Course Enrolled"
+    />
+  </div>
+  <button (click)="updateStudent()">Update</button>
+  <button (click)="deleteStudent()">Delete</button>
 </div>

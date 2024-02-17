@@ -9,7 +9,7 @@ import { Enrolment } from '../model/enrolment.model';
   providedIn: 'root',
 })
 export class EnrolmentService {
-  private apiUrl = 'http://localhost:8080/api/enrolments'; // Update with your backend URL
+  private apiUrl = 'http://localhost:8080/api/enrolments';
 
   constructor(private http: HttpClient) {}
 
@@ -17,15 +17,15 @@ export class EnrolmentService {
     return this.http.get<Enrolment[]>(this.apiUrl);
   }
 
-  getEnrolmentById(enrolmentId: number): Observable<Enrolment> {
-    return this.http.get<Enrolment>(`${this.apiUrl}/${enrolmentId}`);
+  getEnrolmentById(id: number): Observable<Enrolment> {
+    return this.http.get<Enrolment>(`${this.apiUrl}/${id}`);
   }
 
   saveEnrolment(enrolment: Enrolment): Observable<Enrolment> {
     return this.http.post<Enrolment>(this.apiUrl, enrolment);
   }
 
-  deleteEnrolment(enrolmentId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${enrolmentId}`);
+  deleteEnrolment(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
