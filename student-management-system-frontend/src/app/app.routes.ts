@@ -11,5 +11,4 @@ export const routes: Routes = [
   { path: 'students/:id', component: StudentDetailsComponent },
   { path: 'courses', component: CourseListComponent },
   { path: 'enrolments', component: EnrolmentListComponent },
-  // Add more routes as needed for additional components or features
 ];

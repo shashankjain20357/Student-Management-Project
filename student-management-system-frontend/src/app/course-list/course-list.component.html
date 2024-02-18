@@ -1,12 +1,41 @@
 <!-- course-list.component.html -->
 
-<div *ngFor="let course of courses">
-  <div>
-    <h3>{{ course.courseName }}</h3>
-    <p>Duration: {{ course.duration }}</p>
-    <!-- Add any other relevant information -->
+<div>
+  <h2>Course List</h2>
+  <button (click)="showAddCourseForm()">Add Course</button>
 
-    <!-- Link to Course Details -->
-    <a [routerLink]="['/courses', course.courseId]">View Details</a>
+  <div *ngIf="showForm">
+    <form (submit)="addCourse()">
+
+      <label for="courseName">Course Name:</label>
+      <input id="courseName" [(ngModel)]="newCourse.courseName" required />
+
+      <label for="duration">Duration:</label>
+      <input id="duration" [(ngModel)]="newCourse.duration" required />
+
+      <button type="submit">Add</button>
+    </form>
   </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Course ID</th>
+        <th>Course Name</th>
+        <th>Duration</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{ course.courseId }}</td>
+        <td>{{ course.courseName }}</td>
+        <td>{{ course.duration }}</td>
+        <td>
+          <button (click)="updateCourse(course.courseId)">Update</button>
+          <button (click)="deleteCourse(course.courseId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

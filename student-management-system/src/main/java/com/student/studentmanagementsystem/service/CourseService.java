@@ -1,14 +1,13 @@
 package com.student.studentmanagementsystem.service;
 
-import com.student.studentmanagementsystem.entities.Course;
-
 import java.util.List;
-import java.util.Optional;
+
+import com.student.studentmanagementsystem.entities.Course;
 
 public interface CourseService {
     List<Course> getAllCourses();
-    Optional<Course> getCourseById(Long courseId);
+    Course getCourseById(Long course_id);
     Course saveCourse(Course course);
-    Course updateCourse(Long courseId, Course updatedCourse);
-    void deleteCourse(Long courseId);
+    Course updateCourse(Long course_id, Course updatedCourse);
+    void deleteCourse(Long course_id);
 }

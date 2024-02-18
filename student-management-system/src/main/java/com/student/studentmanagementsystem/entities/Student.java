@@ -1,7 +1,16 @@
 package com.student.studentmanagementsystem.entities;
 
-import jakarta.persistence.*;
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 
 @Entity
 public class Student {
@@ -17,64 +26,4 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "course_enrolled_id")
     private Course courseEnrolled;
-
-    @OneToMany(mappedBy = "student")
-    private List<Enrolment> enrolments;
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Course getCourseEnrolled() {
-        return courseEnrolled;
-    }
-
-    public void setCourseEnrolled(Course courseEnrolled) {
-        this.courseEnrolled = courseEnrolled;
-    }
-
-    public List<Enrolment> getEnrolments() {
-        return enrolments;
-    }
-
-    public void setEnrolments(List<Enrolment> enrolments) {
-        this.enrolments = enrolments;
-    }
-    
 }

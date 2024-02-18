@@ -10,6 +10,7 @@ import { Student } from '../model/student.model';
   providedIn: 'root',
 })
 export class StudentService {
+  
   // private apiUrl = 'http://localhost:8080/api/students';
   private apiUrl = `${environment.apiUrl}/students`;
 
@@ -29,6 +30,10 @@ export class StudentService {
 
   updateStudent(id: number, student: Student): Observable<Student> {
     return this.http.put<Student>(`${this.apiUrl}/${id}`, student);
+  }
+
+  addStudent(student: Student): Observable<void> {
+    return this.http.post<void>(this.apiUrl, student);
   }
 
   deleteStudent(id: number): Observable<void> {

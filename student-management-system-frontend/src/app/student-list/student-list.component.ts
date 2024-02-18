@@ -11,6 +11,8 @@ import { StudentService } from '../services/student.service';
 })
 export class StudentListComponent implements OnInit {
   students: Student[] = [];
+  showAddForm: boolean = false;
+  newStudent: Student = {};
 
   constructor(private studentService: StudentService) {}
 
@@ -23,4 +25,17 @@ export class StudentListComponent implements OnInit {
       this.students = data;
     });
   }
+
+  showAddStudentForm(): void {
+    this.showAddForm = true;
+  }
+
+  addStudent(): void {
+    this.studentService.addStudent(this.newStudent).subscribe(() => {
+      this.loadStudents();
+      this.showAddForm = false;
+      this.newStudent = {};
+    });
+  }
+
 }

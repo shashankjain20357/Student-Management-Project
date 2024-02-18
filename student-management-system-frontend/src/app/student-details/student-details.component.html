@@ -22,8 +22,7 @@
     <label for="courseEnrolled">Course Enrolled:</label>
     <input
       id="courseEnrolled"
-      [ngModel]="student.courseEnrolled?.courseName"
-      (ngModelChange)="student.courseEnrolled!.courseName = $event"
+      [ngModel]="student.course"
       placeholder="Course Enrolled"
     />
   </div>

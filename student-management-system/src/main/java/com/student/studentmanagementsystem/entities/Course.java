@@ -1,7 +1,17 @@
 package com.student.studentmanagementsystem.entities;
 
-import jakarta.persistence.*;
 import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 
 @Entity
 public class Course {
@@ -15,46 +25,4 @@ public class Course {
     @OneToMany(mappedBy = "courseEnrolled")
     private List<Student> students;
 
-    @OneToMany(mappedBy = "course")
-    private List<Enrolment> enrolments;
-
-    public Long getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-    
-    public List<Enrolment> getEnrolments() {
-        return enrolments;
-    }
-
-    public void setEnrolments(List<Enrolment> enrolments) {
-        this.enrolments = enrolments;
-    }
 }

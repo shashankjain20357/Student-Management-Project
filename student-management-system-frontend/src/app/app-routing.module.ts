@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'courses', component: CourseListComponent },
   { path: 'enrolments', component: EnrolmentListComponent },
   // Add other routes as needed
-  { path: '', redirectTo: '/students', pathMatch: 'full' }, // Default route
+  // { path: '', redirectTo: '/students', pathMatch: 'full' }, // Default route
 ];
 
 @NgModule({

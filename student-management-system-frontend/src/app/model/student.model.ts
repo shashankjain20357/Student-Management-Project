@@ -9,6 +9,7 @@ export interface Student {
   email?: string;
   contactNo?: string;
   address?: string;
-  courseEnrolled?: Course;
+  courseEnrolled?: Course[];
   enrolments?: Enrolment[];
+  course?:string;
 }

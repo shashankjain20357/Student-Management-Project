@@ -1,23 +1,20 @@
-package com.student.studentmanagementsystem.service;
-
-import com.student.studentmanagementsystem.entities.Enrolment;
-import com.student.studentmanagementsystem.repository.EnrolmentRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+package com.student.studentmanagementsystem.service.impl;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.student.studentmanagementsystem.entities.Enrolment;
+import com.student.studentmanagementsystem.repository.EnrolmentRepository;
+import com.student.studentmanagementsystem.service.EnrolmentService;
+
 @Service
 public class EnrolmentServiceImpl implements EnrolmentService {
 
-    private final EnrolmentRepository enrolmentRepository;
-
     @Autowired
-    public EnrolmentServiceImpl(EnrolmentRepository enrolmentRepository) {
-        this.enrolmentRepository = enrolmentRepository;
-    }
+    private EnrolmentRepository enrolmentRepository;
 
     @Override
     public List<Enrolment> getAllEnrolments() {
@@ -38,5 +35,15 @@ public class EnrolmentServiceImpl implements EnrolmentService {
     @Override
     public void deleteEnrolment(Long enrolmentId) {
         enrolmentRepository.deleteById(enrolmentId);
+    }
+
+    @Override
+    public List<Enrolment> enrolmentByStudentId(Long student_id) {
+        return enrolmentRepository.getEnrolmentByStudentId(student_id);
+    }
+
+    @Override
+    public List<Enrolment> enrolmentByCourseId(Long course_id) {
+        return enrolmentRepository.getEnrolmentByCourseId(course_id);
     }
 }

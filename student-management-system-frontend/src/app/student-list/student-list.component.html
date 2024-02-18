@@ -1,4 +1,25 @@
 <!-- student-list.component.html -->
+<p>This is student-list component</p>
+
+<button (click)="showAddStudentForm()">Add Student</button>
+
+<div *ngIf="showAddForm">
+  <form (submit)="addStudent()">
+    <label for="name">Name:</label>
+    <input id="name" [(ngModel)]="newStudent.name" required />
+
+    <label for="email">Email:</label>
+    <input id="email" [(ngModel)]="newStudent.email" required />
+
+    <label for="contactNo">Contact No:</label>
+    <input id="contactNo" [(ngModel)]="newStudent.contactNo" required />
+
+    <label for="address">Address:</label>
+    <input id="address" [(ngModel)]="newStudent.address" required />
+
+    <button type="submit">Add</button>
+  </form>
+</div>
 
 <div *ngFor="let student of students">
   <div>
@@ -6,10 +27,7 @@
     <p>Email: {{ student.email }}</p>
     <p>Contact No: {{ student.contactNo }}</p>
     <p>Address: {{ student.address }}</p>
-    <p>Enrolled Course: {{ student.courseEnrolled?.courseName }}</p>
-    <!-- Add any other relevant information -->
 
-    <!-- Link to Student Details -->
     <a [routerLink]="['/students', student.id]">View Details</a>
   </div>
 </div>

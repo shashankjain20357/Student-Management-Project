@@ -11,6 +11,9 @@ import { CourseService } from '../services/course.service';
 })
 export class CourseListComponent implements OnInit {
   courses: Course[] = [];
+  showForm = false;
+  newCourse: Course = {};
+  router: any;
 
   constructor(private courseService: CourseService) {}
 
@@ -18,9 +21,37 @@ export class CourseListComponent implements OnInit {
     this.loadCourses();
   }
 
-  private loadCourses(): void {
+  loadCourses(): void {
     this.courseService.getAllCourses().subscribe((data) => {
       this.courses = data;
     });
+  }
+
+  showAddCourseForm(): void {
+    this.showForm = true;
+  }
+
+  addCourse(): void {
+    // console.log(this.newCourse)
+    // console.log(this.newCourse.courseName + " " + this.newCourse.duration)
+    this.courseService.addCourse(this.newCourse).subscribe(() => {
+      this.loadCourses();
+      this.showForm = false;
+      this.newCourse = {};
+    });
+  }
+
+  updateCourse(courseId: number | undefined): void {
+    if (courseId !== undefined) {
+      this.router.navigate(['/courses/edit', courseId]);
+    }
+  }
+
+  deleteCourse(courseId: number | undefined): void {
+    if (courseId !== undefined) {
+      this.courseService.deleteCourse(courseId).subscribe(() => {
+        this.loadCourses();
+      });
+    }
   }
 }

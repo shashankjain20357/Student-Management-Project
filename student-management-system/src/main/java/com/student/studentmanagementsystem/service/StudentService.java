@@ -1,14 +1,14 @@
 package com.student.studentmanagementsystem.service;
 
-import com.student.studentmanagementsystem.entities.Student;
-
 import java.util.List;
-import java.util.Optional;
+
+import com.student.studentmanagementsystem.entities.Student;
+import com.student.studentmanagementsystem.entities.StudentResponse;
 
 public interface StudentService {
     List<Student> getAllStudents();
-    Optional<Student> getStudentById(Long studentId);
+    StudentResponse getStudentById(Long student_id);
     Student saveStudent(Student student);
-    Student updateStudent(Long studentId, Student updatedStudent);
-    void deleteStudent(Long studentId);
+    Student updateStudent(Long student_id, Student updatedStudent);
+    void deleteStudent(Long student_id);
 }
