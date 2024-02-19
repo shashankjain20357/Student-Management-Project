@@ -6,16 +6,16 @@
 <div *ngIf="showAddForm">
   <form (submit)="addStudent()">
     <label for="name">Name:</label>
-    <input id="name" [(ngModel)]="newStudent.name" required />
+    <input id="name" name="name" [(ngModel)]="newStudent.name" required />
 
     <label for="email">Email:</label>
-    <input id="email" [(ngModel)]="newStudent.email" required />
+    <input id="email" name="email" [(ngModel)]="newStudent.email" required />
 
     <label for="contactNo">Contact No:</label>
-    <input id="contactNo" [(ngModel)]="newStudent.contactNo" required />
+    <input id="contactNo" name="contactNo" [(ngModel)]="newStudent.contactNo" required />
 
     <label for="address">Address:</label>
-    <input id="address" [(ngModel)]="newStudent.address" required />
+    <input id="address" name="address" [(ngModel)]="newStudent.address" required />
 
     <button type="submit">Add</button>
   </form>

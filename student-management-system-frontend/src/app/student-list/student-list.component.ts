@@ -37,5 +37,4 @@ export class StudentListComponent implements OnInit {
       this.newStudent = {};
     });
   }
-
 }

@@ -13,7 +13,7 @@ export class CourseListComponent implements OnInit {
   courses: Course[] = [];
   showForm = false;
   newCourse: Course = {};
-  router: any;
+  editedCourse: Course = {};
 
   constructor(private courseService: CourseService) {}
 
@@ -32,8 +32,6 @@ export class CourseListComponent implements OnInit {
   }
 
   addCourse(): void {
-    // console.log(this.newCourse)
-    // console.log(this.newCourse.courseName + " " + this.newCourse.duration)
     this.courseService.addCourse(this.newCourse).subscribe(() => {
       this.loadCourses();
       this.showForm = false;
@@ -43,7 +41,18 @@ export class CourseListComponent implements OnInit {
 
   updateCourse(courseId: number | undefined): void {
     if (courseId !== undefined) {
-      this.router.navigate(['/courses/edit', courseId]);
+    
+      const originalCourse = this.courses.find((course) => course.courseId === courseId);
+
+      if (!this.editedCourse || this.editedCourse.courseId !== courseId) {
+        this.editedCourse = { ...originalCourse };
+      } else {
+        
+        this.courseService.updateCourse(courseId, this.editedCourse).subscribe(() => {
+          this.loadCourses();
+          this.editedCourse = {};
+        });
+      }
     }
   }
 

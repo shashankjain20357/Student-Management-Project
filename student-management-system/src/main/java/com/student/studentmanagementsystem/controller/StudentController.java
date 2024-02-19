@@ -19,6 +19,7 @@ import com.student.studentmanagementsystem.entities.StudentResponse;
 import com.student.studentmanagementsystem.service.StudentService;
 
 @CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("/api/students")
 

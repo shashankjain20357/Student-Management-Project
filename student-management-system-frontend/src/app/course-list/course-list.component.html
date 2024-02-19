@@ -8,16 +8,16 @@
     <form (submit)="addCourse()">
 
       <label for="courseName">Course Name:</label>
-      <input id="courseName" [(ngModel)]="newCourse.courseName" required />
+      <input id="courseName" name="courseName" [(ngModel)]="newCourse.courseName" required />
 
       <label for="duration">Duration:</label>
-      <input id="duration" [(ngModel)]="newCourse.duration" required />
+      <input id="duration" name="duration" [(ngModel)]="newCourse.duration" required />
 
       <button type="submit">Add</button>
     </form>
   </div>
 
-  <table>
+   <table>
     <thead>
       <tr>
         <th>Course ID</th>
@@ -29,10 +29,29 @@
     <tbody>
       <tr *ngFor="let course of courses">
         <td>{{ course.courseId }}</td>
-        <td>{{ course.courseName }}</td>
-        <td>{{ course.duration }}</td>
         <td>
-          <button (click)="updateCourse(course.courseId)">Update</button>
+          <ng-container *ngIf="!editedCourse || editedCourse.courseId !== course.courseId; else editMode">
+            {{ course.courseName }}
+          </ng-container>
+          <ng-template #editMode>
+            <input [(ngModel)]="editedCourse.courseName" required />
+            
+          </ng-template>
+        </td>
+
+        <td>
+          <ng-container *ngIf="!editedCourse || editedCourse.courseId !== course.courseId; else editMode">
+            {{ course.duration }}
+          </ng-container>
+          <ng-template #editMode>
+            <input [(ngModel)]="editedCourse.duration" required />
+          </ng-template>
+        </td>
+
+        <td>
+          <button (click)="updateCourse(course.courseId)">
+            {{ !editedCourse || editedCourse.courseId !== course.courseId ? 'Update' : 'Save' }}
+          </button>
           <button (click)="deleteCourse(course.courseId)">Delete</button>
         </td>
       </tr>

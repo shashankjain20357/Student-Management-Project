@@ -72,7 +72,7 @@ public class StudentServiceImpl implements StudentService {
 
         if (optionalExistingStudent.isPresent()) {
             Student existingStudent = optionalExistingStudent.get();
-            // Update only non-null fields 
+
             if (updatedStudent.getName() != null) {
                 existingStudent.setName(updatedStudent.getName());
             }
@@ -93,10 +93,8 @@ public class StudentServiceImpl implements StudentService {
             //     existingStudent.setCourseEnrolled(updatedStudent.getCourseEnrolled());
             // }
 
-            // Save the updated student
             return studentRepository.save(existingStudent);
         } else {
-            // Handle not found scenario
             return null;
         }
     }

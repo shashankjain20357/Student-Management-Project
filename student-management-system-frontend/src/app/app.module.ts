@@ -13,6 +13,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { EnrolmentListComponent } from './enrolment-list/enrolment-list.component';
 
 @NgModule({
+  
   declarations: [
     AppComponent,
     StudentListComponent,
@@ -26,7 +27,7 @@ import { EnrolmentListComponent } from './enrolment-list/enrolment-list.componen
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   
   providers: [],
